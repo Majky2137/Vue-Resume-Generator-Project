@@ -86,6 +86,22 @@ export default {
           </div>
         </div>
       </div>
+      <div class="main">
+        <div class="left_main_container">
+          <div class="section_headings">
+            <h2>Skills</h2>
+          </div>
+          <div class="section_headings">
+            <h3>Additional skills</h3>
+          </div>
+          <div class="section_headings">
+            <h3>Interest</h3>
+          </div>
+        </div>
+        <div class="right_main_container">
+
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -102,7 +118,7 @@ body {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100vh;
+  height: 120vh;
   overflow-x: hidden;
   margin: 0;
 }
@@ -121,6 +137,35 @@ body {
 
   width: 50%;
   height: 100%;
+}
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+.main > .right_main_container {
+  position: relative;
+  display:flex;
+  width:70%;
+  height: 100%;
+  background-color: #E3E3E3;
+}
+.left_main_container > .section_headings {
+  position: relative;
+  display:flex;
+  width:100%;
+  padding:20px;
+  max-height:calc(10vh);
+}
+.main > .left_main_container {
+  display:flex;
+  position: relative;
+  flex-direction: column;
+  width:30%;
+  height: 100%;
+  background-color: #E3E3E3;
 }
 .preview_container > .resume_header {
   position: relative;
@@ -170,15 +215,18 @@ body {
 .preview_container > .resume_header > .resume_right_header > .right > span {
   resize: none;
   box-shadow: none;
-  display: flex;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 16px;
-  margin-right: 8px;
-  height: 100%;
+  height: calc(22vh);
   max-width: 100%;
   color: #e3e3e3;
+  text-align:left;
   position: relative;
-  white-space: pre-wrap;
-  text-align: justify;
 }
 
 .preview_container > .resume_header > .resume_right_header > .left > h1 {
@@ -207,7 +255,7 @@ body {
   position: relative;
   display: flex;
   margin-right: 8px;
-  height: calc(22vh);
+  max-height: calc(19vh);
   width: 165px;
   background-color: #e3e3e3;
   content: "UPLOAD";
@@ -285,6 +333,20 @@ input [type="file"] {
   .wrapper {
     flex-direction: column;
   }
+  .resume_header {
+    max-height: 20vh;
+  }
+  .preview_container > .resume_header > .resume_left_header {
+  padding: 10px;
+  width: 20%;
+}  .preview_container > .resume_header > .resume_right_header {
+  padding: 10px;
+  width: 95%;
+}
+.preview_container > .resume_header > .resume_right_header > .left > h1 {
+  font-size: 15px;
+
+}
   .form_left {
     width: 100%;
     margin-bottom: 40px;
@@ -292,9 +354,14 @@ input [type="file"] {
   .preview_container {
     width: 100%;
   }
+  .preview_container > .resume_header > .resume_right_header > .right > span {
+    margin-right:20px;
+    font-size:12px;
+    overflow: scroll;
+  }
   .preview_container > .resume_header > .resume_left_header > .img_container {
-    max-height: 10vh;
-    max-width: 14vh;
+    max-height: 22vh;
+    max-width: 16vw;
   }
 }
 </style>
