@@ -8,6 +8,15 @@ export default {
       FirstName: '',
       LastName: '',
       About: '',
+      Selected: '',
+      Skills: [
+        { id: '1', value: 'Vue' },
+        { id: '2', value: 'React' },
+        { id: '3', value: 'PHP' },
+        { id: '4', value: 'Application Development'},
+        { id: '5',  value: 'UX Design'},
+        { id: '6',  value: 'JavaScript'},
+      ],
     }
   },
   methods: {
@@ -63,6 +72,13 @@ export default {
           placeholder="Tell something about yourself"
           required="required"
         />
+
+        <p>Skills</p>
+        <select class="select_input" name="Skills"  v-model="Selected" multiple>
+        <option v-for="Skill in Skills" :value="Skill.value" :key="Skill.id">
+          {{ Skill.value }}
+       </option>
+        </select>
       </form>
     </div>
     <div class="preview_container">
@@ -82,31 +98,44 @@ export default {
           </div>
           <div class="right">
             <p>Short description</p>
-            <span>{{ About }}</span>
+            <span style="white-space: pre-line;">{{ About }}</span>
           </div>
         </div>
       </div>
       <div class="main">
         <div class="left_main_container">
+          <div class="cont_info">
           <div class="section_headings">
             <h2>Skills</h2>
           </div>
+          <span>{{Selected}}</span>
+          </div>
+          <div class="cont_info">
           <div class="section_headings">
             <h3>Additional skills</h3>
           </div>
+        </div>
+
+        <div class="cont_info">
           <div class="section_headings">
             <h3>Interest</h3>
           </div>
-        </div>
-        <div class="right_main_container">
+          </div>
+
+          <div class="cont_info">
+          <div class="section_headings">
+            <h3>Languages</h3>
+          </div>
+          </div>
 
         </div>
+        <div class="right_main_container"></div>
       </div>
     </div>
   </div>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
 html,
 body {
@@ -147,25 +176,33 @@ body {
 }
 .main > .right_main_container {
   position: relative;
-  display:flex;
-  width:70%;
+  display: flex;
+  width: 60%;
   height: 100%;
-  background-color: #E3E3E3;
+  background-color: #e3e3e3;
+}
+.left_main_container > .cont_info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  max-height: calc(10vh);
 }
 .left_main_container > .section_headings {
   position: relative;
-  display:flex;
-  width:100%;
-  padding:20px;
-  max-height:calc(10vh);
+  display: flex;
+  width: 100%;
+  padding: 20px;
+  max-height: calc(10vh);
 }
 .main > .left_main_container {
-  display:flex;
+  display: flex;
   position: relative;
   flex-direction: column;
-  width:30%;
+  width: 40%;
   height: 100%;
-  background-color: #E3E3E3;
+  background-color: #e3e3e3;
 }
 .preview_container > .resume_header {
   position: relative;
@@ -200,7 +237,7 @@ body {
   justify-content: flex-start;
   align-items: baseline;
   height: 100%;
-  margin-right: 50px;
+  margin-right: 30px;
   max-width: 50%;
 }
 .preview_container > .resume_header > .resume_right_header > .right {
@@ -222,10 +259,11 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 16px;
-  height: calc(22vh);
+  max-height: calc(18vh);
+  min-height: calc(18vh);
   max-width: 100%;
   color: #e3e3e3;
-  text-align:left;
+  text-align: left;
   position: relative;
 }
 
@@ -256,7 +294,7 @@ body {
   display: flex;
   margin-right: 8px;
   max-height: calc(19vh);
-  width: 165px;
+  width: 100%;
   background-color: #e3e3e3;
   content: "UPLOAD";
   object-fit: cover;
@@ -286,7 +324,7 @@ body {
   width: 50%;
 }
 .text_input {
-  resize: none;
+
   box-shadow: none;
   display: flex;
   width: 50%;
@@ -305,6 +343,24 @@ body {
   transition-timing-function: ease-in-out, ease-in-out;
   transition-delay: 0s, 0s;
 }
+.select_input {
+  resize: none;
+  box-shadow: none;
+  max-height: 80px;
+  width: 50%;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #555;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition-property: border-color, box-shadow;
+  transition-duration: 0.15s, 0.15s;
+  transition-timing-function: ease-in-out, ease-in-out;
+  transition-delay: 0s, 0s;
+}
+
 input [type="file"] {
   color: green;
 }
@@ -337,16 +393,16 @@ input [type="file"] {
     max-height: 20vh;
   }
   .preview_container > .resume_header > .resume_left_header {
-  padding: 10px;
-  width: 20%;
-}  .preview_container > .resume_header > .resume_right_header {
-  padding: 10px;
-  width: 95%;
-}
-.preview_container > .resume_header > .resume_right_header > .left > h1 {
-  font-size: 15px;
-
-}
+    padding: 10px;
+    width: 20%;
+  }
+  .preview_container > .resume_header > .resume_right_header {
+    padding: 10px;
+    width: 95%;
+  }
+  .preview_container > .resume_header > .resume_right_header > .left > h1 {
+    font-size: 15px;
+  }
   .form_left {
     width: 100%;
     margin-bottom: 40px;
@@ -355,9 +411,10 @@ input [type="file"] {
     width: 100%;
   }
   .preview_container > .resume_header > .resume_right_header > .right > span {
-    margin-right:20px;
-    font-size:12px;
-    overflow: scroll;
+    margin-right: 30px;
+    font-size: 12px;
+    min-height: calc(10vh);
+    max-height: calc(10vh);
   }
   .preview_container > .resume_header > .resume_left_header > .img_container {
     max-height: 22vh;

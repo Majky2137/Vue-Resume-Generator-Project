@@ -4,12 +4,12 @@
 
 <script>
 // @ is an alias to /src
-import FormRes from "@/components/Resume_Form.vue";
+import FormRes from '@/components/Resume_Form.vue';
 
 export default {
-  name: "Resume",
+  name: 'Resume',
   components: {
-    FormRes,
-  },
-};
+    FormRes
+  }
+}
 </script>
